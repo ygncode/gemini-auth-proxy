@@ -1,0 +1,24 @@
+{
+  "name": "gemini-auth-proxy",
+  "version": "1.0.0",
+  "description": "OAuth proxy for Gemini API with PKCE authentication and token refresh",
+  "module": "src/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "dev": "bun run --watch src/index.ts",
+    "example:code-assist": "bun run examples/code-assist.ts",
+    "example:standard": "bun run examples/standard.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@ai-sdk/google": "^3.0.6",
+    "ai": "^6.0.27"
+  }
+}
