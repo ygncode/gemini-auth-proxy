@@ -1,0 +1,8 @@
+services:
+  gemini-proxy:
+    build: .
+    container_name: gemini-auth-proxy
+    ports:
+      - "8888:8888"
+      - "8085:8085"
+    restart: unless-stopped
