@@ -58,6 +58,21 @@ pm2 startup
 pm2 save
 ```
 
+### Run with Docker
+
+```bash
+# Build and start
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop
+docker-compose down
+```
+
+The server will be available at `http://localhost:8888`.
+
 ### Login
 
 1. Open `http://localhost:8888/ui` in your browser
