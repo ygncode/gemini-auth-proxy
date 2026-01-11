@@ -28,7 +28,7 @@ async function main() {
   try {
     const result = await generateText({
       model,
-      prompt: "What is the capital of France? Answer in one word.",
+      prompt: "Write a short poem about Dalat in Vietnam.",
     });
 
     console.log("Response:");
