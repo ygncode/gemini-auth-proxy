@@ -73,6 +73,8 @@ docker-compose down
 
 The server will be available at `http://localhost:8888`.
 
+> **Note**: The container uses `network_mode: host` so it binds directly to the host's network. This allows other Docker containers (also using host networking) to access it via `localhost:8888`.
+
 ### Login
 
 1. Open `http://localhost:8888/ui` in your browser

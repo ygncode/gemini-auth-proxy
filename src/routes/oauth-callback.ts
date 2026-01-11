@@ -159,7 +159,7 @@ export async function startOAuthCallbackServer(
 
     callbackServer = Bun.serve({
       port: OAUTH_CALLBACK_PORT,
-      hostname: "127.0.0.1",
+      hostname: "0.0.0.0",
       fetch: async (request) => {
         const url = new URL(request.url);
 

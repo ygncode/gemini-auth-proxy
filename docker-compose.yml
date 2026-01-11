@@ -5,4 +5,11 @@ services:
     ports:
       - "8888:8888"
       - "8085:8085"
+    networks:
+      - gemini-proxy-network
     restart: unless-stopped
+
+networks:
+  gemini-proxy-network:
+    name: gemini-proxy-network
+    driver: bridge

@@ -8,10 +8,13 @@ export function homePage(): string {
   `;
 }
 
-export function loginInProgress(): string {
+export function loginInProgress(authUrl?: string): string {
   return `
     <div class="message message--success">
-      Opening Google login in your browser... Complete the OAuth flow to continue.
+      ${authUrl
+        ? `Click the link below to login with Google:<br><br><a href="${authUrl}" target="_blank" style="color: #8b5cf6; word-break: break-all;">${authUrl}</a>`
+        : "Opening Google login in your browser... Complete the OAuth flow to continue."
+      }
     </div>
     <div class="status-section">
       <div class="status-row">

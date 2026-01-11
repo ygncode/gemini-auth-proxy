@@ -53,20 +53,28 @@ export async function handleUIRequest(
       const callbackPromise = startOAuthCallbackServer(authorization.verifier);
       pendingOAuth = { verifier: authorization.verifier, promise: callbackPromise };
 
-      // Open browser
-      const openCommand =
-        process.platform === "darwin"
-          ? "open"
-          : process.platform === "win32"
-            ? "start"
-            : "xdg-open";
+      // Try to open browser, but don't fail if it doesn't work (e.g., in Docker)
+      let browserOpened = false;
+      try {
+        const openCommand =
+          process.platform === "darwin"
+            ? "open"
+            : process.platform === "win32"
+              ? "start"
+              : "xdg-open";
 
-      Bun.spawn([openCommand, authorization.url], {
-        stdout: "ignore",
-        stderr: "ignore",
-      });
+        const proc = Bun.spawn([openCommand, authorization.url], {
+          stdout: "ignore",
+          stderr: "ignore",
+        });
+        await proc.exited;
+        browserOpened = proc.exitCode === 0;
+      } catch {
+        browserOpened = false;
+      }
 
-      return new Response(loginInProgress(), {
+      // If browser didn't open, show the URL for manual click
+      return new Response(loginInProgress(browserOpened ? undefined : authorization.url), {
         headers: { "Content-Type": "text/html; charset=utf-8" },
       });
     } catch (error) {
