@@ -35,6 +35,29 @@ bun run start
 
 The server will start on `http://localhost:8888`.
 
+### Run in Background (pm2)
+
+For persistent background operation, use [pm2](https://pm2.keymetrics.io/):
+
+```bash
+# Install pm2 globally (if not already installed)
+npm install -g pm2
+
+# Start the proxy in background
+pm2 start bun --name "gemini-proxy" -- run start
+
+# Useful pm2 commands
+pm2 status              # Check running status
+pm2 logs gemini-proxy   # View logs
+pm2 restart gemini-proxy  # Restart server
+pm2 stop gemini-proxy     # Stop server
+pm2 delete gemini-proxy   # Remove from pm2
+
+# Auto-start on system boot (optional)
+pm2 startup
+pm2 save
+```
+
 ### Login
 
 1. Open `http://localhost:8888/ui` in your browser
